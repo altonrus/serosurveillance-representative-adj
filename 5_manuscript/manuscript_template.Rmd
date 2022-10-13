@@ -17,11 +17,13 @@ header-includes:
 
 \newcommand{\1}{\textbf{1}}
 
-W. Alton Russell^1^, others
+Yuan Yu^1^, Matthew Knight^1^, Sheila O'Brien^2^, David L. Buckeridge^1^, W. Alton Russell^1^
 
 <br>
 
 ^1^School of Population and Global Health, McGill University, Montreal, Canada
+
+^2^ Canadian Blood Services, Ottawa, Canada
 
 <br>
 
@@ -32,6 +34,7 @@ W. Alton Russell^1^, others
 **Running title:**
 
 ##### 
+
 
 ```{r setup, include=FALSE}
 library(ggplot2) #plots
@@ -62,6 +65,8 @@ gen_tab_sourcestr <- function(sources_raw){
   sources <- paste0("[", paste0(sources, collapse=""), "]")
   return(sources)
 }
+
+num_patients = 2000
 
 ```
 
@@ -99,6 +104,8 @@ sourcestr_t_samp <- gen_tab_sourcestr(df_samp$Source)
 <br>
 
 # Results
+
+The number of patients was `r num_patients`
 
 > A
 
