@@ -198,7 +198,7 @@ fig_num <- run_autonum(seq_id = "fig",
 
 knitr::include_graphics("../4_output/figs/figure1.png")
 
-block_caption("Seropositivity estimation during Omicron, January - April, 2022.", 
+block_caption("Seropositivity estimation during Omicron, January - April, 2022. Average absolute difference between CBS vs AbC are 0.138 and 0.165 from MR and MRP model correspondingly; Proportion of days of closer estimations from MRP are 18%, 43%, 44%, 62%, 49%, 29% for Alberta, Atlantic region, British Columbia, Manitoba, Ontario and Saskatchewan. MRP does not make estimations from different sources closer for most overlapping time periods of CBS and AbC especially for AB and SK. Note: Darker shades indicate a loess smoothing for estimates of daily seroposotivity.", 
               style = "Image Caption", 
               autonum = fig_num)
 
@@ -213,7 +213,7 @@ fig_num <- run_autonum(seq_id = "fig",
 
 knitr::include_graphics("../4_output/figs/figure2.png")
 
-block_caption("Seropositivity estimation during Omicron, April - August, 2022.", 
+block_caption("Seropositivity estimation during Omicron, January - April, 2022. Average absolute difference between CBS vs CCAHS II are 0.141 and 0.1113 from MR and MRP model correspondingly; Proportion of days of closer estimations from MRP are 94%, 77%, 83%, 83%, 91%, 75% for Alberta, Atlantic region, British Columbia, Manitoba, Ontario and Saskatchewan. MRP makes estimations from different sources closer for most overlapping time periods of CBS and CCAHS II.", 
               style = "Image Caption", 
               autonum = fig_num)
 
@@ -265,7 +265,7 @@ t_samp
 #sfig_autonum <- run_autonum(seq_id = "sfig", pre_label = "Figure S", bkm="f-sample-2", start_at=1)
 ```
 
-```{r, fig.width=5, fig.height=1}
+```{r, fig.width=6, fig.height=4}
 
 sfig_num <- run_autonum(seq_id = "sfig", 
                        pre_label = "Figure S", 
@@ -273,11 +273,46 @@ sfig_num <- run_autonum(seq_id = "sfig",
                        bkm_all = TRUE,
                        prop = fp_text(bold=TRUE, underlined = TRUE))
 
-knitr::include_graphics("../4_output/figs/figure.png")
+knitr::include_graphics("../4_output/figs/fig_A.png")
 
 
 
-block_caption("A figure caption.", 
+block_caption("Seropositivity During Vaccination Period (Jan – Apr, 2021, CBS vs AbC vs CCAHS I)", 
               style = "Image Caption", 
               autonum = sfig_num)
 ```
+
+```{r, fig.width=6, fig.height=4}
+
+sfig_num <- run_autonum(seq_id = "sfig", 
+                       pre_label = "Figure S", 
+                       bkm="f-sample-2",
+                       bkm_all = TRUE,
+                       prop = fp_text(bold=TRUE, underlined = TRUE))
+
+knitr::include_graphics("../4_output/figs/fig_E.png")
+
+
+
+block_caption("Seropositivity During Omicron (Apr – Aug, 2022, CBS vs CCAHS II)", 
+              style = "Image Caption", 
+              autonum = sfig_num)
+```
+
+```{r, fig.width=6, fig.height=4}
+
+sfig_num <- run_autonum(seq_id = "sfig", 
+                       pre_label = "Figure S", 
+                       bkm="f-sample-2",
+                       bkm_all = TRUE,
+                       prop = fp_text(bold=TRUE, underlined = TRUE))
+
+knitr::include_graphics("../4_output/figs/fig_odds_cb.png")
+
+block_caption("Odds Ratio Across combined dataset from multiple data sources", 
+              style = "Image Caption", 
+              autonum = sfig_num)
+```
+
+
+
