@@ -1,5 +1,5 @@
 ---
-title: Evaluating the use of blood donor data for SARS-CoV-2 serological surveillance
+title: Comparisons of SARS-CoV-2 serological surveillance across multiple data sources
 author: 
 output: 
   officedown::rdocx_document:
@@ -17,7 +17,7 @@ header-includes:
 
 \newcommand{\1}{\textbf{1}}
 
-Yuan Yu^1^, Matthew Knight^1^, Sheila O'Brien^2^, David L. Buckeridge^1^, W. Alton Russell^1^
+Yuan Yu^1^, Sheila O'Brien^2^, David L. Buckeridge^1^, W. Alton Russell^1^
 
 <br>
 
@@ -76,6 +76,7 @@ sourcestr_t_samp <- gen_tab_sourcestr(df_samp$Source)
 ```
 
 # Abstract
+Blood donors serve as a crucial population for serosurveillance due to its convenient data collection process compared to other public health serveys. The fact that it consists large proportion of the elder male population might throw doubts on the seropositivity estimation for the general population. In this paper, firstly, we compared the seropositivity estimation of the general population across different data resources for varies time period, evaluating the effect of multilevel regression and poststratification (MRP) in comparison to traditional statistical adjustment approach like raking. Secondly, we further tracked the temporal pattern of the MRP adjusted seropositivity curve to find that representation error is not the main cause of the serosurveillance discrepancy across different data resources, by evaluating the average absolute difference and proportion of days of closer estimations before and after the evaluation. The gap of serosurveillance for the general population among different resources depend on varies factors including the data collection, blood sample type (serum or dried blood spots), assay difference and operating labs. 
 
 **Background:** A
 
@@ -91,11 +92,13 @@ sourcestr_t_samp <- gen_tab_sourcestr(df_samp$Source)
 
 > Citation [@Langham2018a]
 
-<br>
+<br>    
 
 # Methods
 
-> See `r run_reference("t-sample")` `r sourcestr_t_samp` and \@ref(tab:t-sample-2).
+> Data: CBS, CCAHS, ABC, APL, CLSA, CanPath
+
+> Modeling: Multilevel Regression and Poststritification (Theorem, regression variables, poststratification table)
 
 ## Subsection
 
@@ -105,8 +108,13 @@ sourcestr_t_samp <- gen_tab_sourcestr(df_samp$Source)
 
 # Results
 
-The number of patients was `r num_patients`
+The MRP generally provides more precise estimates with lower CV (coefficient of variance = mean/sd) and admissible compared with other adjusting methods like raking and raw post-stratification, especially adjusting for multiple demographic features when aggregation table is sparse for smaller sample size (i.e. AbC). 
 
+Especially, for later Omicron period, MRP could pull the seropositivity estimation together in comparing the adjusted and unadjusted seropositivity comparing the CBS and CCAHS II, for both overall and temporal seropositivity estimation. However, MRP does not seem to have the same effect on the earlier period when comparing with other data resources, no matter for overall or temporal seropositivity.  
+
+Even within the same data source, MRP does not adjust the seropositivity in the same direction. For example, it tends to adjust the trend higher for the Prairies regions during the earlier Omicron but lower for the latter period.
+
+Since there is still an obvious gap between the population level seropositivity curves after adjusted for the potential representation error. For evaluating the potential cause of the discrepancy, we provide the coefficient analysis of the log-odds for a combined data source including the type of the blood. It showed that the higher seropositivity might be caused by serum blood samples collected by the CBS, compared to the dried blood spots used in AbC. 
 > A
 
 <br>
@@ -162,15 +170,15 @@ t_samp <- font(t_samp, fontname = "Times", part = "all")
 t_samp <- theme_box(t_samp)
 t_samp <- bg(t_samp, bg = "#EAEAEA", part = "header")
 t_samp <- width(t_samp, 1, 1.7)
-t_samp <- bg(t_samp, i = c(1, 4), bg = "#DDDDDD", part = "body")
-t_samp <- bold(t_samp, i = c(1, 4), part = "body")
+t_samp <- bg(t_samp, i = c(1, 3), bg = "#DDDDDD", part = "body")
+t_samp <- bold(t_samp, i = c(1, 3), part = "body")
 t_samp <- align(t_samp, align = "left", part = "all")
 t_samp <- set_caption(t_samp,
                       "This is a sample table.",
                       autonum = tab_num)
 # t_samp <- footnote(t_samp, i=1, j=1, part="header",ref_symbols ="1",
 #                          value=as_paragraph("This is a footnote."))
-t_samp <-  colformat_md(t_samp, j=2:4, part="body",
+t_samp <-  colformat_md(t_samp, j=2:3, part="body",
                         pandoc_args = c('--csl', 'refs-in-tables.csl'))
 
 
@@ -181,21 +189,35 @@ t_samp
 
 # Figures
 
-```{r fig.width=5, fig.height=1}
+```{r fig.width=7, fig.height=4}
 fig_num <- run_autonum(seq_id = "fig",
                        pre_label = "Figure ",
                        bkm="f-sample",
                        bkm_all = TRUE,
                        prop = fp_text(bold=TRUE, underlined = TRUE))
 
-knitr::include_graphics("../4_output/figs/figure.png")
+knitr::include_graphics("../4_output/figs/figure1.png")
 
-block_caption("This is a figure caption.", 
+block_caption("Seropositivity estimation during Omicron, January - April, 2022.", 
               style = "Image Caption", 
               autonum = fig_num)
 
 ```
 
+```{r fig.width=7, fig.height=4}
+fig_num <- run_autonum(seq_id = "fig",
+                       pre_label = "Figure ",
+                       bkm="f-sample",
+                       bkm_all = TRUE,
+                       prop = fp_text(bold=TRUE, underlined = TRUE))
+
+knitr::include_graphics("../4_output/figs/figure2.png")
+
+block_caption("Seropositivity estimation during Omicron, April - August, 2022.", 
+              style = "Image Caption", 
+              autonum = fig_num)
+
+```
 ##### 
 
 # Supplemental materials
@@ -224,13 +246,13 @@ t_samp <- font(t_samp, fontname = "Times", part = "all")
 t_samp <- theme_box(t_samp)
 t_samp <- bg(t_samp, bg = "#EAEAEA", part = "header")
 t_samp <- width(t_samp, 1, 1.7)
-t_samp <- bg(t_samp, i = c(1, 4), bg = "#DDDDDD", part = "body")
-t_samp <- bold(t_samp, i = c(1, 4), part = "body")
+t_samp <- bg(t_samp, i = c(1, 3), bg = "#DDDDDD", part = "body")
+t_samp <- bold(t_samp, i = c(1, 3), part = "body")
 t_samp <- set_caption(t_samp,
                       "This is a sample table.",
                       autonum = stab_num)
 t_samp <- align(t_samp, align = "left", part = "all")
-t_samp <-  colformat_md(t_samp, j=2:4, part="body")
+t_samp <-  colformat_md(t_samp, j=2:3, part="body")
 
 t_samp
 ```
