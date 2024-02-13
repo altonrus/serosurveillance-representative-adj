@@ -299,7 +299,7 @@ block_caption("Seropositivity During Omicron (Apr – Aug, 2022, CBS vs CCAHS II
               autonum = sfig_num)
 ```
 
-```{r, fig.width=6, fig.height=4}
+```{r, fig.width=6, fig.height=3.5}
 
 sfig_num <- run_autonum(seq_id = "sfig", 
                        pre_label = "Figure S", 
